@@ -1,5 +1,5 @@
-namespace StockManager.Contracts.Product;
-
+namespace StockManager.Contracts.Product
+{
 
     public record UpsertProductRequest
     (
@@ -10,3 +10,4 @@ namespace StockManager.Contracts.Product;
          string SubCategory,
          string Brand,
         string Supplier);
+}

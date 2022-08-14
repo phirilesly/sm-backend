@@ -4,14 +4,14 @@
     "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj": {}
   },
   "projects": {
-    "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj": {
+    "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
-        "projectName": "StockManager",
-        "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
+        "projectUniqueName": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
+        "projectName": "StockManager.Contracts",
+        "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
         "packagesPath": "C:\\Users\\Property365\\.nuget\\packages\\",
-        "outputPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\obj\\",
+        "outputPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Property365\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,7 +41,71 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
+        "projectName": "StockManager",
+        "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
+        "packagesPath": "C:\\Users\\Property365\\.nuget\\packages\\",
+        "outputPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Property365\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/365solutions/Property365/_packaging/Property365.Packages/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/365solutions/_packaging/365Solutions.Packages/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj": {
+                "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
           "dependencies": {
+            "ErrorOr": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"

@@ -1,0 +1,7 @@
+PUT 
+Content-Type: application/json
+
+{
+    "name": "New Name",
+    "description": "New Description"
+}

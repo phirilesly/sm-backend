@@ -1,0 +1,13 @@
+POST 
+
+Content-Type: application/json
+
+{
+    "name": "test",
+    "description": "test",
+    "price": "10.00",
+    "category": "test",
+    "image": "test"
+}
+
+"""

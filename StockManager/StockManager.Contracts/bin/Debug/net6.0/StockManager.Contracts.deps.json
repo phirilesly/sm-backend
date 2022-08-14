@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "StockManager.Contracts/1.0.0": {
+        "runtime": {
+          "StockManager.Contracts.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "StockManager.Contracts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

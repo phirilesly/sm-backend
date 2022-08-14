@@ -1,4 +1,7 @@
-namespace StockManager.Contracts.Product;
+namespace StockManager.Contracts.Product
+{
+
+
 
 
     public record ProductResponse
@@ -12,4 +15,5 @@ namespace StockManager.Contracts.Product;
         string Brand,
         string Supplier
     );
+}
    

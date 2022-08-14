@@ -1,52 +1,100 @@
+using StockManager.Contracts.Product;
+using StockManager.ServiceErrors;
+using StockManager.Services;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
+using StockManager.Models;
 
-
-namespace Stockmanager.Controllers
+namespace StockManager.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+
+
+
+    public class ProductsController : ApiController
     {
-        private readonly IStockManagerService _stockManagerService;
+        private readonly IStockManagerService _stoctManagerService;
 
         public ProductsController(IStockManagerService stockManagerService)
         {
-            _stockManagerService = stockManagerService;
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductResponse>>> Get()
-        {
-            var products = await _stockManagerService.GetProducts();
-            return Ok(products);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<ProductResponse>> Get(Guid id)
-        {
-            var product = await _stockManagerService.GetProduct(id);
-            return Ok(product);
+            _stoctManagerService = stockManagerService;
         }
 
         [HttpPost]
-        public async Task<ActionResult<ProductResponse>> Post(CreateProductRequest request)
+        public IActionResult CreateProduct(CreateProductRequest request)
         {
-            var product = await _stockManagerService.CreateProduct(request);
-            return Ok(product);
+            ErrorOr<Product> requestToProductResult = Product.From(request);
+
+            if (requestToProductResult.IsError)
+            {
+                return Problem(requestToProductResult.Errors);
+            }
+
+            var product = requestToProductResult.Value;
+            ErrorOr<Created> createProductResult = _stoctManagerService.CreateProduct(product);
+
+            return createProductResult.Match(
+                created => CreatedAtGetProduct(product),
+                errors => Problem(errors));
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult<ProductResponse>> Put(Guid id, UpsertProductRequest request)
+        [HttpGet("{id:guid}")]
+        public IActionResult GetProduct(Guid id)
         {
-            var product = await _stockManagerService.UpsertProduct(id, request);
-            return Ok(product);
+            ErrorOr<Product> getProductResult = _stoctManagerService.GetProduct(id);
+
+            return getProductResult.Match(
+                Product => Ok(MapProductResponse(Product)),
+                errors => Problem(errors));
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<ProductResponse>> Delete(Guid id)
+        [HttpPut("{id:guid}")]
+        public IActionResult UpsertProduct(Guid id, UpsertProductRequest request)
         {
-            var product = await _stockManagerService.DeleteProduct(id);
-            return Ok(product);
+            ErrorOr<Product> requestToProductResult = Product.From(id, request);
+
+            if (requestToProductResult.IsError)
+            {
+                return Problem(requestToProductResult.Errors);
+            }
+
+            var product = requestToProductResult.Value;
+            ErrorOr<UpsertedProduct> upsertProductResult = _stoctManagerService.UpsertProduct(product);
+
+            return upsertProductResult.Match(
+                upserted => upserted.IsNewlyCreated ? CreatedAtGetProduct(product) : NoContent(),
+                errors => Problem(errors));
         }
+
+        [HttpDelete("{id:guid}")]
+        public IActionResult DeleteProduct(Guid id)
+        {
+            ErrorOr<Deleted> deleteProductResult = _stoctManagerService.DeleteProduct(id);
+
+            return deleteProductResult.Match(
+                deleted => NoContent(),
+                errors => Problem(errors));
+        }
+
+        private static ProductResponse MapProductResponse(Product product)
+        {
+            return new ProductResponse(
+                product.Id,
+                product.Name,
+                product.Description,
+                product.Barcode,
+                product.Category,
+                product.SubCategory,
+                product.Brand,
+                product.Supplier);
+        }
+
+        private CreatedAtActionResult CreatedAtGetProduct(Product product)
+        {
+            return CreatedAtAction(
+               actionName: nameof(GetProduct),
+               routeValues: new { id = product.Id },
+               value: MapProductResponse(product));
+        }
+
     }
 }
