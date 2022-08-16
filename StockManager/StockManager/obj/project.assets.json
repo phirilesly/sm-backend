@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "ErrorOr/0.1.0": {
+      "ErrorOr/1.0.0": {
         "type": "package",
         "compile": {
           "lib/net6.0/ErrorOr.dll": {}
@@ -95,14 +95,14 @@
     }
   },
   "libraries": {
-    "ErrorOr/0.1.0": {
-      "sha512": "adIVrA1Ixck5oZ79ZKB5f7k+aVlg4AB47nNHY14+qI8d+4//sTe0Dvbp8AIJEz/94OimmWjdGfei67q9UZPGig==",
+    "ErrorOr/1.0.0": {
+      "sha512": "ebUnOo0kV+KWzEHGG/7nbSZXsGQQaG6fvrvAV62Zx75GoXz3YAbMNeirJORzvAdYynNssk77aATo3NLrjgzCKQ==",
       "type": "package",
-      "path": "erroror/0.1.0",
+      "path": "erroror/1.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "erroror.0.1.0.nupkg.sha512",
+        "erroror.1.0.0.nupkg.sha512",
         "erroror.nuspec",
         "icon-square.png",
         "lib/net6.0/ErrorOr.dll",
@@ -242,7 +242,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "ErrorOr >= 0.1.0",
+      "ErrorOr >= 1.0.0",
       "StockManager.Contracts >= 1.0.0",
       "Swashbuckle.AspNetCore >= 6.2.3"
     ]
@@ -253,11 +253,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
+      "projectUniqueName": "C:\\Frontend\\StockManager\\StockManager\\StockManager.csproj",
       "projectName": "StockManager",
-      "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
+      "projectPath": "C:\\Frontend\\StockManager\\StockManager\\StockManager.csproj",
       "packagesPath": "C:\\Users\\Property365\\.nuget\\packages\\",
-      "outputPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\obj\\",
+      "outputPath": "C:\\Frontend\\StockManager\\StockManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Property365\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -276,8 +276,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj": {
-              "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj"
+            "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj": {
+              "projectPath": "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj"
             }
           }
         }
@@ -294,7 +294,7 @@
         "dependencies": {
           "ErrorOr": {
             "target": "Package",
-            "version": "[0.1.0, )"
+            "version": "[1.0.0, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

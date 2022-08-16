@@ -1,10 +1,9 @@
+﻿using ErrorOr;
 using StockManager.Contracts.Product;
-using ErrorOr;
 using StockManager.ServiceErrors;
 
 namespace StockManager.Models
 {
-
     public class Product
     {
 
@@ -15,13 +14,13 @@ namespace StockManager.Models
         public const int MinDescriptionLength = 50;
         public const int MaxDescriptionLength = 150;
 
-       public Guid Id { get; }
+        public Guid Id { get; }
         public string Name { get; }
-      public  string Description { get; }
-       public string Barcode { get; }
+        public string Description { get; }
+        public string Barcode { get; }
         public string Category { get; }
         public string SubCategory { get; }
-       public  string Brand { get; }
+        public string Brand { get; }
         public string Supplier { get; }
 
 

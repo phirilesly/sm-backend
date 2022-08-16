@@ -1,10 +1,9 @@
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace StockManager.Controllers
 {
-
-
-
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class ErrorsController : ControllerBase
     {
         [Route("/error")]
@@ -13,6 +12,4 @@ namespace StockManager.Controllers
             return Problem();
         }
     }
-
 }
-

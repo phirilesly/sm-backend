@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "LpRO81DQcBoyg0KF+ge2BZF4nFmN8sXnmcRV2Ms7WadAWi+Bfo4HBMc6ZuvgrxZ0VCbPQy9Ye0DL1qGjvFzGFg==",
+  "dgSpecHash": "FZMtg3M8LkBxMbkxmEyL+0q/ckLMko5jddBcYqrF/9ojrROXD4QteQTfipZnWA8K2NUqRkxw8Z826Vm13ro3Rw==",
   "success": true,
-  "projectFilePath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
+  "projectFilePath": "C:\\Frontend\\StockManager\\StockManager\\StockManager.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Property365\\.nuget\\packages\\erroror\\0.1.0\\erroror.0.1.0.nupkg.sha512",
+    "C:\\Users\\Property365\\.nuget\\packages\\erroror\\1.0.0\\erroror.1.0.0.nupkg.sha512",
     "C:\\Users\\Property365\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\Property365\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\Property365\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",

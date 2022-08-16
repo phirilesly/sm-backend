@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
+      "projectUniqueName": "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
       "projectName": "StockManager.Contracts",
-      "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
+      "projectPath": "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
       "packagesPath": "C:\\Users\\Property365\\.nuget\\packages\\",
-      "outputPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\obj\\",
+      "outputPath": "C:\\Frontend\\StockManager\\StockManager.Contracts\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Property365\\AppData\\Roaming\\NuGet\\NuGet.Config",

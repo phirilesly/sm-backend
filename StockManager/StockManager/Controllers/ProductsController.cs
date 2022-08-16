@@ -1,15 +1,13 @@
-using StockManager.Contracts.Product;
-using StockManager.ServiceErrors;
-using StockManager.Services;
-using ErrorOr;
+﻿using ErrorOr;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using StockManager.Contracts.Product;
 using StockManager.Models;
+using StockManager.Services;
 
 namespace StockManager.Controllers
 {
-
-
-
     public class ProductsController : ApiController
     {
         private readonly IStockManagerService _stoctManagerService;

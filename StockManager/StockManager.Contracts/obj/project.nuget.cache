@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fqa1Xwrb0XohvSvyO4L8snAgxzoPT8sA/CtrTl5hmWwvUFwrju6VEu8ZX++lyN+BDupgX7CQ76Nl9DPXJPKUHw==",
+  "dgSpecHash": "OdCmrNcXJE7S1IEuR3qDHNivLUztayMrlO/ncsl4pKtmrgHN7Nnsq7Yx+IErmzjwg8ARnRJFs20RUKeb/SdA6g==",
   "success": true,
-  "projectFilePath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
+  "projectFilePath": "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
