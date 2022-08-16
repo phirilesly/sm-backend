@@ -253,11 +253,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Frontend\\StockManager\\StockManager\\StockManager.csproj",
+      "projectUniqueName": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
       "projectName": "StockManager",
-      "projectPath": "C:\\Frontend\\StockManager\\StockManager\\StockManager.csproj",
+      "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\StockManager.csproj",
       "packagesPath": "C:\\Users\\Property365\\.nuget\\packages\\",
-      "outputPath": "C:\\Frontend\\StockManager\\StockManager\\obj\\",
+      "outputPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Property365\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -276,8 +276,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj": {
-              "projectPath": "C:\\Frontend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj"
+            "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj": {
+              "projectPath": "C:\\Frontend\\SM-aspnetcore-backend\\StockManager\\StockManager.Contracts\\StockManager.Contracts.csproj"
             }
           }
         }

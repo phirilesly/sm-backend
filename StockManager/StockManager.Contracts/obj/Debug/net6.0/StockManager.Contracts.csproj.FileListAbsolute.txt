@@ -10,3 +10,15 @@ C:\Frontend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Co
 C:\Frontend\StockManager\StockManager.Contracts\obj\Debug\net6.0\refint\StockManager.Contracts.dll
 C:\Frontend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.pdb
 C:\Frontend\StockManager\StockManager.Contracts\obj\Debug\net6.0\ref\StockManager.Contracts.dll
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\bin\Debug\net6.0\StockManager.Contracts.deps.json
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\bin\Debug\net6.0\StockManager.Contracts.dll
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\bin\Debug\net6.0\StockManager.Contracts.pdb
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.csproj.AssemblyReference.cache
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.AssemblyInfoInputs.cache
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.AssemblyInfo.cs
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.csproj.CoreCompileInputs.cache
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.dll
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\refint\StockManager.Contracts.dll
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\StockManager.Contracts.pdb
+C:\Frontend\SM-aspnetcore-backend\StockManager\StockManager.Contracts\obj\Debug\net6.0\ref\StockManager.Contracts.dll
