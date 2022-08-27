@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using StockManager.Contracts.Common;
 using StockManager.Contracts.Product;
 using StockManager.Models;
 using StockManager.Services;
@@ -42,6 +43,33 @@ namespace StockManager.Controllers
 
             return getProductResult.Match(
                 Product => Ok(MapProductResponse(Product)),
+                errors => Problem(errors));
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> GetProducts(string? name,string? brand,string? category,Guid? Id)
+        {
+            var searchParameters = new List<SearchParameter>();
+            if (Id.HasValue)
+            {
+                searchParameters.Add(new SearchParameter { Name = "ID", Value = Id.ToString() });
+            }
+            if (!string.IsNullOrEmpty(name))
+            {
+                searchParameters.Add(new SearchParameter { Name = "NAME", Value = name });
+            }
+            if (!string.IsNullOrEmpty(brand))
+            {
+                searchParameters.Add(new SearchParameter { Name = "BRAND", Value = brand });
+            }
+            if (!string.IsNullOrEmpty(category))
+            {
+                searchParameters.Add(new SearchParameter { Name = "CATEGORY", Value = category });
+            }
+            ErrorOr<List<Product>> getProductResult = await _stoctManagerService.GetProducts(searchParameters);
+
+            return getProductResult.Match(
+                Products => Ok((Products)),
                 errors => Problem(errors));
         }
 

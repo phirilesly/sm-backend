@@ -11,7 +11,7 @@ namespace StockManager.Models
         public const int MinNameLength = 3;
         public const int MaxNameLength = 50;
 
-        public const int MinDescriptionLength = 50;
+        public const int MinDescriptionLength = 2;
         public const int MaxDescriptionLength = 150;
 
         public Guid Id { get; }

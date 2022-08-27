@@ -11,7 +11,7 @@ namespace StockManager.Contracts.Product
            string Name,
           string Description,
            string Barcode,
-        string Category,
+          string Category,
            string SubCategory,
            string Brand,
           string Supplier);

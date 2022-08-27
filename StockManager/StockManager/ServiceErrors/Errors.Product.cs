@@ -22,5 +22,49 @@ namespace StockManager.ServiceErrors
                 description: "Product not found");
         }
 
+        public static class Branch
+        {
+            public static Error InvalidName => Error.Validation(
+               code: "Branch.InvalidName",
+               description: $"Branch name must be at least {Models.Branch.MinNameLength}" +
+                   $" characters long and at most {Models.Branch.MaxNameLength} characters long.");
+
+            public static Error InvalidPhone => Error.Validation(
+                code: "Phone.InvalidPhone",
+                description: $"Phone number must be at least {Models.Branch.MinPhoneLength}" +
+                    $" characters long and at most {Models.Branch.MaxPhoneLength} characters long.");
+
+            public static Error NotFound => Error.NotFound(
+                code: "Branch.NotFound",
+                description: "Branch not found");
+        }
+
+        public static class Purchase
+        {
+        
+
+            public static Error NotFound => Error.NotFound(
+                code: "Purchase.NotFound",
+                description: "Sale not found");
+        }
+
+        public static class Inventory
+        {
+
+
+            public static Error NotFound => Error.NotFound(
+                code: "Inventory.NotFound",
+                description: "Inventory not found");
+        }
+
+        public static class User
+        {
+
+
+            public static Error NotFound => Error.NotFound(
+                code: "User.NotFound",
+                description: "User not found");
+        }
+
     }
 }
