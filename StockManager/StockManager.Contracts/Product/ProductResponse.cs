@@ -11,9 +11,9 @@ namespace StockManager.Contracts.Product
         Guid Id,
         string Name,
         string Description,
+        decimal Price,
         string Barcode,
         string Category,
-        string SubCategory,
         string Brand,
         string Supplier
     );

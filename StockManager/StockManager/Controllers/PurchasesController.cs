@@ -106,6 +106,7 @@ namespace StockManager.Controllers
                 purchase.Id,
                 purchase.ProductId,
                 purchase.BranchId,
+                purchase.SaleDate,
                 purchase.Quantity,
                 purchase.Price
                );

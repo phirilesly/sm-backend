@@ -9,8 +9,10 @@ namespace StockManager.Contracts.Inventory
     public record InventoryResponse(
           Guid Id,
            Guid BranchId,
+             Guid ProductId,
         DateTime OrderDate,
-         decimal TotalPrice,
-         List<OrderItem> OrderItems 
+         decimal OrderPrice,
+         int Quantity
+       
     );
 }

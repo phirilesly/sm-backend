@@ -8,10 +8,11 @@ namespace StockManager.Contracts.Inventory
 {
     public record CreateInventoryRequest
     (
-          Guid Id,
-          Guid BranchId,
+            Guid Id,
+           Guid BranchId,
+             Guid ProductId,
         DateTime OrderDate,
-         decimal TotalPrice,
-         List<OrderItem> OrderItems 
+         decimal OrderPrice,
+         int Quantity
     );
 }

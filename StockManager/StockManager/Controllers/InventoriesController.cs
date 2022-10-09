@@ -104,11 +104,12 @@ namespace StockManager.Controllers
         private static InventoryResponse MapInventoryResponse(Inventory inventory)
         {
             return new InventoryResponse(
+                 inventory.Id,
                 inventory.BranchId,
-                inventory.Id,
+                inventory.ProductId,
                 inventory.OrderDate,
-                inventory.TotalPrice,
-                inventory.OrderItems
+                inventory.OrderPrice,
+                inventory.Quantity
               );
         }
 

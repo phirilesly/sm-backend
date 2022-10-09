@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace StockManager.Contracts.Inventory
 {
     public record UpsertInventoryRequest(
-         Guid Id,
-          Guid BranchId,
+       Guid Id,
+           Guid BranchId,
+             Guid ProductId,
         DateTime OrderDate,
-         decimal TotalPrice,
-         List<OrderItem> OrderItems 
+         decimal OrderPrice,
+         int Quantity
     );
 }

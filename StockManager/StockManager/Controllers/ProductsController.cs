@@ -107,11 +107,12 @@ namespace StockManager.Controllers
                 product.Id,
                 product.Name,
                 product.Description,
+                product.Price,
                 product.Barcode,
                 product.Category,
-                product.SubCategory,
                 product.Brand,
-                product.Supplier);
+                product.Supplier
+               );
         }
 
         private CreatedAtActionResult CreatedAtGetProduct(Product product)

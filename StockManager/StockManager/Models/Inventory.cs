@@ -9,28 +9,31 @@ namespace StockManager.Models
 
         public Guid Id { get; }
         public Guid BranchId { get; }
+        public Guid ProductId { get; }
         public DateTime OrderDate { get; }
-        public decimal TotalPrice { get; }
-        public List<OrderItem> OrderItems { get; }
+        public decimal OrderPrice { get; }
+        public int Quantity { get; }
        
 
      
 
-        public Inventory(Guid id,Guid branchId, DateTime orderDate, decimal totalPrice, List<OrderItem> orderItems)
+        public Inventory(Guid id,Guid branchId,Guid productId, DateTime orderDate, decimal orderPrice, int quantity)
         {
             Id = id;
             BranchId = branchId;
+            ProductId = productId;
             OrderDate = orderDate;
-            TotalPrice = totalPrice;
-            OrderItems = orderItems;
+          OrderPrice = orderPrice;
+           Quantity = quantity;
            
         }
 
         public static ErrorOr<Inventory> Create(
             Guid branchId,
+            Guid productId,
             DateTime orderDate,
-            decimal totalPrice,
-          List<OrderItem> orderItems,
+            decimal orderPrice,
+         int quantity,
             Guid? id = null)
 
 
@@ -55,18 +58,20 @@ namespace StockManager.Models
             return new Inventory(
                 id ?? Guid.NewGuid(),
                 branchId,
+                productId,
                 orderDate,
-                totalPrice,
-                orderItems);
+              orderPrice,
+                quantity);
         }
 
         public static ErrorOr<Inventory> From(CreateInventoryRequest request)
         {
             return Create(
                 request.BranchId,
+                request.ProductId,
                 request.OrderDate,
-                request.TotalPrice,
-                request.OrderItems
+                request.OrderPrice,
+                request.Quantity
                );
         }
 
@@ -74,9 +79,10 @@ namespace StockManager.Models
         {
             return Create(
                  request.BranchId,
+                 request.ProductId,
                 request.OrderDate,
-                request.TotalPrice,
-                request.OrderItems,
+                request.OrderPrice,
+                request.Quantity,
                 id);
         }
     }

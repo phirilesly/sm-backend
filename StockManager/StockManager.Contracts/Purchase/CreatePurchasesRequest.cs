@@ -9,6 +9,7 @@ namespace StockManager.Contracts.Purchase
     public record CreatePurchasesRequest(
         Guid ProductId,
          Guid BranchId,
+         DateTime SaleDate,
         int Quantity,
         decimal Price
 

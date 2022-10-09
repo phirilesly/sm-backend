@@ -19,21 +19,23 @@ namespace StockManager.Models
         public string Description { get; }
         public string Barcode { get; }
         public string Category { get; }
-        public string SubCategory { get; }
+        public decimal Price { get; }
         public string Brand { get; }
         public string Supplier { get; }
+     
 
 
-        public Product(Guid id, string name, string description, string barcode, string category, string subCategory, string brand, string supplier)
+        public Product(Guid id, string name, string description, string barcode, string category, decimal price , string brand, string supplier)
         {
             Id = id;
             Name = name;
             Description = description;
             Barcode = barcode;
             Category = category;
-            SubCategory = subCategory;
+            Price = price;
             Brand = brand;
             Supplier = supplier;
+          
         }
 
         public static ErrorOr<Product> Create(
@@ -41,7 +43,7 @@ namespace StockManager.Models
             string description,
             string barcode,
             string category,
-            string subCategory,
+            decimal price,
             string brand,
             string supplier,
             Guid? id = null)
@@ -71,9 +73,10 @@ namespace StockManager.Models
                 description,
                 barcode,
                 category,
-                subCategory,
+                price,
                 brand,
-                supplier);
+                supplier
+                );
         }
 
         public static ErrorOr<Product> From(CreateProductRequest request)
@@ -83,9 +86,10 @@ namespace StockManager.Models
                 request.Description,
                 request.Barcode,
                 request.Category,
-                request.SubCategory,
+                request.Price,
                 request.Brand,
-                request.Supplier);
+                request.Supplier
+              );
         }
 
         public static ErrorOr<Product> From(Guid id, UpsertProductRequest request)
@@ -95,7 +99,7 @@ namespace StockManager.Models
                 request.Description,
                 request.Barcode,
                 request.Category,
-                request.SubCategory,
+                request.Price,
                 request.Brand,
                 request.Supplier,
                 id);

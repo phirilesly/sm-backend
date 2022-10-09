@@ -5,7 +5,7 @@ namespace StockManager.Contracts.Inventory
         Guid OrderId,
        Guid ProductId,
         int Quantity,
-        decimal OrderPrice,
-        decimal TotalPrice
+        decimal OrderPrice
+       
     );
 }

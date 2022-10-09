@@ -15,6 +15,7 @@ namespace StockManager.Models
         public Guid Id { get; }
         public Guid BranchId { get; }
         public Guid ProductId { get; }
+        public DateTime SaleDate { get; }
       public int Quantity { get; }
         public decimal Price { get; }
 
@@ -22,11 +23,12 @@ namespace StockManager.Models
 
 
 
-        public Purchase(Guid id,Guid branchId, Guid productId, int quantity, decimal price)
+        public Purchase(Guid id,Guid branchId, Guid productId,DateTime saleDate, int quantity, decimal price)
         {
             Id = id;
             BranchId = branchId;
            ProductId = productId;
+            SaleDate = saleDate;
             Quantity = quantity;
             Price = price;
         }
@@ -34,6 +36,7 @@ namespace StockManager.Models
         public static ErrorOr<Purchase> Create(
             Guid branchId,
             Guid productId,
+            DateTime saleDate,
             int quantity,
             decimal price,
             Guid? id = null)
@@ -61,6 +64,7 @@ namespace StockManager.Models
                 id ?? Guid.NewGuid(),
                 branchId,
                 productId,
+                saleDate,   
                 quantity,
                 price
             
@@ -74,6 +78,7 @@ namespace StockManager.Models
             return Create(
                 request.BranchId,
                 request.ProductId,
+                request.SaleDate,
                 request.Quantity,
                 request.Price
               );
@@ -84,6 +89,7 @@ namespace StockManager.Models
             return Create(
                 request.BranchId,
               request.ProductId,
+              request.SaleDate,
                 request.Quantity,
                 request.Price,
                 id);

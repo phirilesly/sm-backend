@@ -10,6 +10,7 @@ namespace StockManager.Contracts.Purchase
         Guid Id,
         Guid ProductId,
          Guid BranchId,
+         DateTime SaleDate,
         int Quantity,
         decimal Price
     );
