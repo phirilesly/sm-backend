@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.IdentityModel.Tokens;
 using StockManager.Contracts.Common;
 using StockManager.Contracts.User;
 using StockManager.Services;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 
 namespace StockManager.Controllers
 {
@@ -15,109 +18,141 @@ namespace StockManager.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IStockManagerService _authService;
+        public static User user = new User();
+        private readonly IConfiguration _configuration;
 
-        public AuthController(IStockManagerService authService)
+        public AuthController(IStockManagerService authService, IConfiguration configuration)
         {
             _authService = authService;
+            _configuration = configuration;
+        }
+
+        [HttpGet, Authorize]
+        public ActionResult<string> GetMe()
+        {
+            var userName = _authService.GetMyName();
+            return Ok(userName);
         }
 
         [HttpPost("register")]
-        public async Task<ActionResult<ServiceResponse<int>>> Register(UserRegister request)
+        public async Task<ActionResult<User>> Register(UserDto request)
         {
-            var response = await _authService.Register(
-                new User
-                {
-                    Email = request.Email
-                },
-                request.Password);
+            CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
 
-            if (!response.Success)
-            {
-                return BadRequest(response);
-            }
+            user.Username = request.Username;
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
 
-            return Ok(response);
+            return Ok(user);
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<ServiceResponse<string>>> Login(UserLogin request)
+        public async Task<ActionResult<string>> Login(UserDto request)
         {
-            var response = await _authService.Login(request.Email, request.Password);
-            if (!response.Success)
+            if (user.Username != request.Username)
             {
-                return BadRequest(response);
+                return BadRequest("User not found.");
             }
 
-            return Ok(response);
+            if (!VerifyPasswordHash(request.Password, user.PasswordHash, user.PasswordSalt))
+            {
+                return BadRequest("Wrong password.");
+            }
+
+            string token = CreateToken(user);
+
+            var refreshToken = GenerateRefreshToken();
+            SetRefreshToken(refreshToken);
+
+            return Ok(token);
         }
 
-        [HttpPost("change-password"), Authorize]
-        public async Task<ActionResult<ServiceResponse<bool>>> ChangePassword([FromBody] string newPassword)
+        [HttpPost("refresh-token")]
+        public async Task<ActionResult<string>> RefreshToken()
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var response = await _authService.ChangePassword(int.Parse(userId), newPassword);
+            var refreshToken = Request.Cookies["refreshToken"];
 
-            if (!response.Success)
+            if (!user.RefreshToken.Equals(refreshToken))
             {
-                return BadRequest(response);
+                return Unauthorized("Invalid Refresh Token.");
+            }
+            else if (user.TokenExpires < DateTime.Now)
+            {
+                return Unauthorized("Token expired.");
             }
 
-            return Ok(response);
+            string token = CreateToken(user);
+            var newRefreshToken = GenerateRefreshToken();
+            SetRefreshToken(newRefreshToken);
+
+            return Ok(token);
         }
 
-        [HttpGet("search")]
-        public async Task<IActionResult> GetUsers(string? email,string? name,Guid? Id)
+        private RefreshToken GenerateRefreshToken()
         {
-            var searchParameters = new List<SearchParameter>();
-            if (Id.HasValue)
+            var refreshToken = new RefreshToken
             {
-                searchParameters.Add(new SearchParameter { Name = "ID", Value = Id.ToString() });
-            }
-            if (!string.IsNullOrEmpty(name))
-            {
-                searchParameters.Add(new SearchParameter { Name = "NAME", Value = name });
-            }
-            if (!string.IsNullOrEmpty(email))
-            {
-                searchParameters.Add(new SearchParameter { Name = "EMAIL", Value = email});
-            }
-            ErrorOr<List<User>> getBranchResult = await  _authService.GetUsers(searchParameters);
-
-            return getBranchResult.Match(
-                Branches => Ok((Branches)),
-                errors => Problem(errors));
-        }
-
-        protected IActionResult Problem(List<Error> errors)
-        {
-            if (errors.All(e => e.Type == ErrorType.Validation))
-            {
-                var modelStateDictionary = new ModelStateDictionary();
-
-                foreach (var error in errors)
-                {
-                    modelStateDictionary.AddModelError(error.Code, error.Description);
-                }
-
-                return ValidationProblem(modelStateDictionary);
-            }
-
-            if (errors.Any(e => e.Type == ErrorType.Unexpected))
-            {
-                return Problem();
-            }
-
-            var firstError = errors[0];
-
-            var statusCode = firstError.Type switch
-            {
-                ErrorType.NotFound => StatusCodes.Status404NotFound,
-                ErrorType.Validation => StatusCodes.Status400BadRequest,
-                ErrorType.Conflict => StatusCodes.Status409Conflict,
-                _ => StatusCodes.Status500InternalServerError
+                Token = Convert.ToBase64String(RandomNumberGenerator.GetBytes(64)),
+                Expires = DateTime.Now.AddDays(7),
+                Created = DateTime.Now
             };
 
-            return Problem(statusCode: statusCode, title: firstError.Description);
+            return refreshToken;
+        }
+
+        private void SetRefreshToken(RefreshToken newRefreshToken)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                HttpOnly = true,
+                Expires = newRefreshToken.Expires
+            };
+            Response.Cookies.Append("refreshToken", newRefreshToken.Token, cookieOptions);
+
+            user.RefreshToken = newRefreshToken.Token;
+            user.TokenCreated = newRefreshToken.Created;
+            user.TokenExpires = newRefreshToken.Expires;
+        }
+
+        private string CreateToken(User user)
+        {
+            List<Claim> claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Role, "Admin")
+            };
+
+            var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(
+                _configuration.GetSection("AppSettings:Token").Value));
+
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var token = new JwtSecurityToken(
+                claims: claims,
+                expires: DateTime.Now.AddDays(1),
+                signingCredentials: creds);
+
+            var jwt = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return jwt;
+        }
+
+        private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512())
+            {
+                passwordSalt = hmac.Key;
+                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
+            }
         }
     }
 }

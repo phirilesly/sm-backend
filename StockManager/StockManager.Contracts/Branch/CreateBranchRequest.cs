@@ -10,6 +10,7 @@ namespace StockManager.Contracts.Branch
        string Name,
             string Town,
             string Phone,
-            string Address);
+            string Address
+           );
   
 }

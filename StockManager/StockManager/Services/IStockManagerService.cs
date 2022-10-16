@@ -38,17 +38,8 @@ namespace StockManager.Services
         ErrorOr<Deleted> DeletePurchase(Guid id);
 
 
-        Task<ServiceResponse<Guid>> Register(User user, string password);
-        Task<bool> UserExists(string email);
-        Task<ServiceResponse<string>> Login(string email, string password);
-        Task<ServiceResponse<bool>> ChangePassword(int userId, string newPassword);
-        int GetUserId();
-        string GetUserEmail();
-        Task<User> GetUserByEmail(string email);
+        string GetMyName();
 
-        Task<ErrorOr<List<User>>> GetUsers(List<SearchParameter> searchParameters);
-
-       
 
 
 
